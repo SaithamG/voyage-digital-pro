@@ -7,6 +7,8 @@ export const tripConfig = {
   },
   destination: "Chine",
   flag: "🇨🇳",
+  heroImage: "https://images.unsplash.com/photo-1508804185872-d7badad00f7d?w=1600&q=80&auto=format&fit=crop",
+  mapZoom: 5,
   departDate: "2026-09-15T06:00:00",
   returnDate: "2026-10-05T20:00:00",
   duration: 21,
@@ -39,6 +41,8 @@ export const tripConfig = {
       hotel: "Grand Millennium Beijing",
       color: "red",
       description: "La capitale impériale",
+      coords: [39.9163, 116.3972],
+      image: "https://images.unsplash.com/photo-1603120527222-33f28c2ce89e?w=1200&q=80&auto=format&fit=crop",
     },
     {
       id: "xian",
@@ -49,6 +53,8 @@ export const tripConfig = {
       hotel: "Sofitel Legend Peoples Grand Hotel",
       color: "amber",
       description: "Berceau de la civilisation chinoise",
+      coords: [34.3416, 108.9398],
+      image: "https://images.unsplash.com/photo-1527922891260-918d42a4efc8?w=1200&q=80&auto=format&fit=crop",
     },
     {
       id: "chengdu",
@@ -59,6 +65,8 @@ export const tripConfig = {
       hotel: "Niccolo Chengdu",
       color: "emerald",
       description: "La ville des pandas et de la gastronomie",
+      coords: [30.5728, 104.0668],
+      image: "https://images.unsplash.com/photo-1540126034813-121bf29033d2?w=1200&q=80&auto=format&fit=crop",
     },
     {
       id: "shanghai",
@@ -69,6 +77,8 @@ export const tripConfig = {
       hotel: "The Bund Hotel by Marriott",
       color: "blue",
       description: "La métropole du futur",
+      coords: [31.2397, 121.4994],
+      image: "https://images.unsplash.com/photo-1545893835-abaa50cbe628?w=1200&q=80&auto=format&fit=crop",
     },
   ],
   itinerary: [

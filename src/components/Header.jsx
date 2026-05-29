@@ -7,6 +7,7 @@ const TABS = [
   { id: 'voyage', label: 'Voyage', icon: '✈️' },
   { id: 'overview', label: 'Vue d\'ensemble', icon: '🗺️' },
   { id: 'roadbook', label: 'Roadbook', icon: '📍' },
+  { id: 'map', label: 'Carte', icon: '🧭' },
   { id: 'finance', label: 'Budget', icon: '💰' },
   { id: 'expenses', label: 'Dépenses', icon: '💳' },
   { id: 'transport', label: 'Transports', icon: '🚄' },

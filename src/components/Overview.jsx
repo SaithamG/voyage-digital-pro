@@ -2,6 +2,7 @@ import React from 'react';
 import { Star } from 'lucide-react';
 import { agencyConfig } from '../config/agencyConfig';
 import { tripConfig } from '../config/tripConfig';
+import SmartImage from './SmartImage';
 
 const StatCard = ({ icon, label, value, sub, color = '#C9A227' }) => (
   <div className="bg-slate-900 rounded-2xl p-4 border border-slate-800 hover:border-slate-700 transition-colors">
@@ -25,25 +26,26 @@ const RegionCard = ({ region, index }) => {
   const c = colorMap[region.color] || colorMap.blue;
 
   return (
-    <div className="bg-slate-900 rounded-2xl p-4 border border-slate-800 hover:border-slate-700 transition-all group">
-      <div className="flex items-start gap-3">
-        <div className="flex-shrink-0 w-8 h-8 rounded-xl flex items-center justify-center text-xs font-black text-slate-500 bg-slate-800">
+    <div className="bg-slate-900 rounded-2xl overflow-hidden border border-slate-800 hover:border-slate-700 transition-all group">
+      <SmartImage src={region.image} alt={region.name} emoji={region.emoji} color={c.text} className="h-28">
+        <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/20 to-transparent" />
+        <div className="absolute top-2 left-2 w-7 h-7 rounded-lg flex items-center justify-center text-xs font-black text-white bg-black/40 backdrop-blur-sm">
           {index + 1}
         </div>
-        <div className="flex-1 min-w-0">
-          <div className="flex items-center gap-2 mb-1">
-            <span className="text-xl">{region.emoji}</span>
-            <span className="font-black text-white text-base">{region.name}</span>
-          </div>
-          <p className="text-slate-500 text-xs italic mb-2">{region.description}</p>
-          <div className="flex flex-wrap gap-2">
-            <span className="text-[10px] font-semibold px-2 py-0.5 rounded-full" style={{ background: c.bg, color: c.text, border: `1px solid ${c.border}` }}>
-              {region.dates}
-            </span>
-            <span className="text-[10px] font-semibold px-2 py-0.5 rounded-full bg-slate-800 text-slate-400">
-              {region.nights} nuits · {region.hotel}
-            </span>
-          </div>
+        <div className="absolute bottom-2 left-3 right-3 flex items-center gap-2">
+          <span className="text-xl">{region.emoji}</span>
+          <span className="font-black text-white text-base drop-shadow">{region.name}</span>
+        </div>
+      </SmartImage>
+      <div className="p-4">
+        <p className="text-slate-500 text-xs italic mb-2">{region.description}</p>
+        <div className="flex flex-wrap gap-2">
+          <span className="text-[10px] font-semibold px-2 py-0.5 rounded-full" style={{ background: c.bg, color: c.text, border: `1px solid ${c.border}` }}>
+            {region.dates}
+          </span>
+          <span className="text-[10px] font-semibold px-2 py-0.5 rounded-full bg-slate-800 text-slate-400">
+            {region.nights} nuits · {region.hotel}
+          </span>
         </div>
       </div>
     </div>
@@ -52,7 +54,7 @@ const RegionCard = ({ region, index }) => {
 
 const Overview = () => {
   const { colors } = agencyConfig;
-  const { client, destination, flag, duration, budget, regions, itinerary, transports } = tripConfig;
+  const { client, destination, flag, duration, budget, regions, itinerary, transports, heroImage } = tripConfig;
 
   const totalBudget = budget.total;
   const totalActivites = itinerary.reduce((sum, day) => sum + day.steps.length, 0);
@@ -61,28 +63,28 @@ const Overview = () => {
   return (
     <div className="space-y-6">
       {/* Hero Banner */}
-      <div className="relative overflow-hidden rounded-3xl p-6" style={{ background: `linear-gradient(135deg, ${colors.dark} 0%, ${colors.primary} 60%, #C9A22730 100%)` }}>
-        <div className="absolute top-0 right-0 text-9xl opacity-10 select-none leading-none">{flag}</div>
-        <div className="relative">
+      <SmartImage src={heroImage} alt={destination} emoji={flag} color={colors.primary} className="rounded-3xl min-h-[15rem]">
+        <div className="absolute inset-0" style={{ background: `linear-gradient(135deg, ${colors.dark}e6 0%, ${colors.primary}b3 55%, transparent 130%)` }} />
+        <div className="relative p-6">
           <div className="flex items-center gap-2 mb-2">
             <Star size={14} style={{ color: colors.secondary }} fill="currentColor" />
-            <span className="text-white/60 text-xs font-medium uppercase tracking-widest">Carnet de voyage</span>
+            <span className="text-white/70 text-xs font-medium uppercase tracking-widest">Carnet de voyage</span>
           </div>
-          <h1 className="text-3xl font-black text-white leading-tight mb-1">
+          <h1 className="text-3xl font-black text-white leading-tight mb-1 drop-shadow">
             {destination} {flag}
           </h1>
-          <p className="text-white/70 text-sm mb-4">
+          <p className="text-white/80 text-sm mb-4 drop-shadow">
             {client.name} · {client.details} · {duration} jours d'aventure
           </p>
           <div className="flex flex-wrap gap-2">
             {regions.map(r => (
-              <span key={r.id} className="text-xs font-bold px-3 py-1 rounded-full bg-white/10 text-white backdrop-blur-sm">
+              <span key={r.id} className="text-xs font-bold px-3 py-1 rounded-full bg-white/15 text-white backdrop-blur-sm">
                 {r.emoji} {r.name}
               </span>
             ))}
           </div>
         </div>
-      </div>
+      </SmartImage>
 
       {/* Statistiques clés */}
       <div>

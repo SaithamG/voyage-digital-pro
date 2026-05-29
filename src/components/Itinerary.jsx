@@ -3,6 +3,7 @@ import { ChevronDown, ChevronUp, Cloud, BookOpen } from 'lucide-react';
 import { agencyConfig } from '../config/agencyConfig';
 import { tripConfig } from '../config/tripConfig';
 import SmartImage from './SmartImage';
+import PhotoGallery from './PhotoGallery';
 
 const colorMap = {
   red: { tab: '#EF444420', tabActive: '#EF4444', text: '#F87171', border: '#EF444440' },
@@ -193,6 +194,16 @@ const Itinerary = ({ activeRegion, setActiveRegion }) => {
           </div>
         </div>
       </SmartImage>
+
+      {/* Galerie photos de la ville */}
+      {currentRegion.gallery && currentRegion.gallery.length > 0 && (
+        <PhotoGallery
+          images={currentRegion.gallery}
+          emoji={currentRegion.emoji}
+          color={c.tabActive}
+          name={currentRegion.name}
+        />
+      )}
 
       {/* Jours */}
       <div className="space-y-3">

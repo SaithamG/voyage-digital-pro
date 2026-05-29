@@ -7,6 +7,7 @@ import Overview from './components/Overview';
 import Finance from './components/Finance';
 import SuiviDepenses from './components/SuiviDepenses';
 import Itinerary from './components/Itinerary';
+import Carte from './components/Carte';
 import Transport from './components/Transport';
 import Converter from './components/Converter';
 import ConverterWidget from './components/ConverterWidget';
@@ -56,9 +57,17 @@ const App = () => {
     return () => clearInterval(timer);
   }, []);
 
+  const goToRegion = (regionId) => {
+    setActiveRegion(regionId);
+    setActiveTab('roadbook');
+  };
+
   const renderTab = () => {
     if (activeTab === 'roadbook') {
       return <Itinerary activeRegion={activeRegion} setActiveRegion={setActiveRegion} />;
+    }
+    if (activeTab === 'map') {
+      return <Carte goToRegion={goToRegion} />;
     }
     if (activeTab === 'ai') {
       return <CoachIA activeRegion={activeRegion} />;

@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { ChevronDown, ChevronUp, Cloud, BookOpen } from 'lucide-react';
 import { agencyConfig } from '../config/agencyConfig';
 import { tripConfig } from '../config/tripConfig';
+import SmartImage from './SmartImage';
+import PhotoGallery from './PhotoGallery';
 
 const colorMap = {
   red: { tab: '#EF444420', tabActive: '#EF4444', text: '#F87171', border: '#EF444440' },
@@ -168,21 +170,40 @@ const Itinerary = ({ activeRegion, setActiveRegion }) => {
         })}
       </div>
 
-      {/* Info région */}
-      <div className="rounded-2xl p-4" style={{ background: c.tab, border: `1px solid ${c.border}` }}>
-        <div className="flex items-center gap-2 mb-1">
-          <span className="text-2xl">{currentRegion.emoji}</span>
-          <div>
-            <p className="font-black text-white">{currentRegion.name}</p>
-            <p className="text-xs opacity-80" style={{ color: c.text }}>{currentRegion.description}</p>
+      {/* Hero région */}
+      <SmartImage
+        src={currentRegion.image}
+        alt={currentRegion.name}
+        emoji={currentRegion.emoji}
+        color={c.tabActive}
+        className="rounded-2xl h-44 border border-slate-800"
+      >
+        <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/40 to-transparent" />
+        <div className="absolute bottom-0 left-0 right-0 p-4">
+          <div className="flex items-center gap-2 mb-1">
+            <span className="text-2xl">{currentRegion.emoji}</span>
+            <div>
+              <p className="font-black text-white text-lg leading-tight">{currentRegion.name}</p>
+              <p className="text-xs text-white/80">{currentRegion.description}</p>
+            </div>
+          </div>
+          <div className="flex flex-wrap gap-2 mt-2">
+            <span className="text-[10px] px-2 py-0.5 rounded-full bg-black/40 backdrop-blur-sm text-white">{currentRegion.dates}</span>
+            <span className="text-[10px] px-2 py-0.5 rounded-full bg-black/40 backdrop-blur-sm text-white">{currentRegion.nights} nuits</span>
+            <span className="text-[10px] px-2 py-0.5 rounded-full bg-black/40 backdrop-blur-sm text-white">🏨 {currentRegion.hotel}</span>
           </div>
         </div>
-        <div className="flex flex-wrap gap-2 mt-2">
-          <span className="text-[10px] px-2 py-0.5 rounded-full bg-black/20 text-white">{currentRegion.dates}</span>
-          <span className="text-[10px] px-2 py-0.5 rounded-full bg-black/20 text-white">{currentRegion.nights} nuits</span>
-          <span className="text-[10px] px-2 py-0.5 rounded-full bg-black/20 text-white">🏨 {currentRegion.hotel}</span>
-        </div>
-      </div>
+      </SmartImage>
+
+      {/* Galerie photos de la ville */}
+      {currentRegion.gallery && currentRegion.gallery.length > 0 && (
+        <PhotoGallery
+          images={currentRegion.gallery}
+          emoji={currentRegion.emoji}
+          color={c.tabActive}
+          name={currentRegion.name}
+        />
+      )}
 
       {/* Jours */}
       <div className="space-y-3">

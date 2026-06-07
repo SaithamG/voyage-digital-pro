@@ -1,5 +1,19 @@
 export const tripConfig = {
   reference: "LV-2026-CHN-047",
+  // Thème accordé à la destination — « papier de soie & laque » (Chine).
+  // Modifiez ces valeurs pour réaccorder toute l'app à une autre destination.
+  theme: {
+    paper: "#F4ECDD",
+    surface: "#FCF8F0",
+    surface2: "#EFE6D5",
+    ink: "#2C2118",
+    inksoft: "#6B5C4C",
+    inkfaint: "#9C8B76",
+    line: "#E7DBC4",
+    primary: "#8B1A2E",
+    gold: "#A67C1B",
+    jade: "#46776A",
+  },
   client: {
     name: "Famille Martin",
     travelers: 4,

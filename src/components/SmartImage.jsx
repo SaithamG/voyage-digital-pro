@@ -4,18 +4,18 @@ const SmartImage = ({ src, alt, emoji = '📍', color = '#8B1A2E', className = '
   const [status, setStatus] = useState(src ? 'loading' : 'error');
 
   return (
-    <div className={`relative overflow-hidden bg-slate-800 ${className}`}>
+    <div className={`relative overflow-hidden bg-surface2 ${className}`}>
       {status === 'error' ? (
         <div
           className="absolute inset-0 flex items-center justify-center"
-          style={{ background: `linear-gradient(135deg, ${color} 0%, #0f172a 130%)` }}
+          style={{ background: `linear-gradient(135deg, ${color} 0%, #2C2118 130%)` }}
         >
           <span className="text-5xl opacity-40 select-none">{emoji}</span>
         </div>
       ) : (
         <>
           {status === 'loading' && (
-            <div className="absolute inset-0 animate-pulse bg-slate-800" />
+            <div className="absolute inset-0 animate-pulse bg-surface2" />
           )}
           <img
             src={src}

@@ -1,13 +1,45 @@
+/* ── Thème éditorial chaleureux · piloté par variables (adaptable à la destination) ──
+   Palette par défaut : Chine — « papier de soie & laque » */
+:root {
+  --c-paper: #F4ECDD;
+  --c-surface: #FCF8F0;
+  --c-surface2: #EFE6D5;
+  --c-ink: #2C2118;
+  --c-inksoft: #6B5C4C;
+  --c-inkfaint: #9C8B76;
+  --c-line: #E7DBC4;
+  --c-primary: #8B1A2E;
+  --c-gold: #A67C1B;
+  --c-jade: #46776A;
+  --font-serif: 'Fraunces', Georgia, 'Times New Roman', serif;
+  --font-sans: 'Inter', system-ui, sans-serif;
+}
+
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+  font-family: var(--font-sans);
 }
 
 body {
-  background-color: #020617;
-  color: #f8fafc;
+  background-color: var(--c-paper);
+  color: var(--c-ink);
 }
+
+/* Titres en serif éditorial — la signature « magazine de voyage » */
+h1, h2, h3, .font-serif {
+  font-family: var(--font-serif);
+  letter-spacing: -0.015em;
+}
+
+::selection {
+  background: rgba(139, 26, 46, 0.18);
+}
+
+::-webkit-scrollbar { width: 5px; height: 5px; }
+::-webkit-scrollbar-track { background: var(--c-surface2); }
+::-webkit-scrollbar-thumb { background: var(--c-primary); border-radius: 3px; }
 
 .scrollbar-hide::-webkit-scrollbar {
   display: none;
@@ -16,3 +48,13 @@ body {
   -ms-overflow-style: none;
   scrollbar-width: none;
 }
+
+/* Popups Leaflet accordés au thème clair */
+.leaflet-popup-content-wrapper {
+  background: var(--c-surface);
+  color: var(--c-ink);
+  border-radius: 14px;
+  box-shadow: 0 10px 30px rgba(44, 33, 24, 0.18);
+}
+.leaflet-popup-tip { background: var(--c-surface); }
+.leaflet-container { font-family: var(--font-sans); }

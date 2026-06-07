@@ -9,7 +9,7 @@ const colorMap = {
   orange: { bg: 'bg-orange-500/10', border: 'border-orange-500/20', text: 'text-orange-400', bar: '#F97316' },
   pink: { bg: 'bg-pink-500/10', border: 'border-pink-500/20', text: 'text-pink-400', bar: '#EC4899' },
   yellow: { bg: 'bg-yellow-500/10', border: 'border-yellow-500/20', text: 'text-yellow-400', bar: '#EAB308' },
-  slate: { bg: 'bg-slate-500/10', border: 'border-slate-500/20', text: 'text-slate-400', bar: '#64748B' },
+  slate: { bg: 'bg-slate-500/10', border: 'border-slate-500/20', text: 'text-inksoft', bar: '#64748B' },
 };
 
 const Finance = () => {
@@ -24,8 +24,8 @@ const Finance = () => {
   return (
     <div className="space-y-5">
       <div>
-        <h2 className="text-white font-black text-xl mb-1">Budget du voyage</h2>
-        <p className="text-slate-500 text-sm">{client.name} · {client.details}</p>
+        <h2 className="text-ink font-black text-xl mb-1">Budget du voyage</h2>
+        <p className="text-inkfaint text-sm">{client.name} · {client.details}</p>
       </div>
 
       {/* Récapitulatif global */}
@@ -35,18 +35,18 @@ const Finance = () => {
           { label: 'Par personne', value: `${perPerson.toLocaleString('fr-FR')} €`, sub: `${client.travelers} voyageurs`, icon: '👤' },
           { label: 'Par jour', value: `${perDay} €`, sub: `${duration} jours`, icon: '📅' },
         ].map(item => (
-          <div key={item.label} className="bg-slate-900 rounded-2xl p-4 border border-slate-800 text-center">
+          <div key={item.label} className="bg-surface rounded-2xl p-4 border border-line text-center">
             <div className="text-2xl mb-2">{item.icon}</div>
-            <div className="font-black text-lg text-white leading-none">{item.value}</div>
-            <div className="text-slate-500 text-[10px] mt-1">{item.label}</div>
-            <div className="text-slate-600 text-[10px]">{item.sub}</div>
+            <div className="font-black text-lg text-ink leading-none">{item.value}</div>
+            <div className="text-inkfaint text-[10px] mt-1">{item.label}</div>
+            <div className="text-inkfaint text-[10px]">{item.sub}</div>
           </div>
         ))}
       </div>
 
       {/* Graphique en barres */}
-      <div className="bg-slate-900 rounded-2xl p-5 border border-slate-800">
-        <h3 className="text-white font-bold text-sm mb-4">Répartition détaillée</h3>
+      <div className="bg-surface rounded-2xl p-5 border border-line">
+        <h3 className="text-ink font-bold text-sm mb-4">Répartition détaillée</h3>
         <div className="space-y-4">
           {budget.categories.map(cat => {
             const pct = (cat.amount / total) * 100;
@@ -61,14 +61,14 @@ const Finance = () => {
                 <div className="flex items-center justify-between mb-1.5">
                   <div className="flex items-center gap-2">
                     <span className="text-lg">{cat.icon}</span>
-                    <span className={`text-sm font-semibold ${isSelected ? 'text-white' : 'text-slate-300'}`}>{cat.label}</span>
+                    <span className={`text-sm font-semibold ${isSelected ? 'text-ink' : 'text-inksoft'}`}>{cat.label}</span>
                   </div>
                   <div className="flex items-center gap-3">
-                    <span className="text-white font-black text-sm">{cat.amount.toLocaleString('fr-FR')} €</span>
+                    <span className="text-ink font-black text-sm">{cat.amount.toLocaleString('fr-FR')} €</span>
                     <span className={`text-xs font-bold ${c.text} min-w-[30px] text-right`}>{Math.round(pct)}%</span>
                   </div>
                 </div>
-                <div className="h-2 bg-slate-800 rounded-full overflow-hidden">
+                <div className="h-2 bg-surface2 rounded-full overflow-hidden">
                   <div
                     className="h-full rounded-full transition-all duration-500"
                     style={{ width: `${pct}%`, background: c.bar }}
@@ -84,17 +84,17 @@ const Finance = () => {
           })}
         </div>
 
-        <div className="mt-5 pt-4 border-t border-slate-800">
+        <div className="mt-5 pt-4 border-t border-line">
           <div className="flex items-center justify-between">
-            <span className="text-slate-400 font-medium">Total voyage</span>
+            <span className="text-inksoft font-medium">Total voyage</span>
             <span className="font-black text-2xl" style={{ color: colors.secondary }}>{total.toLocaleString('fr-FR')} €</span>
           </div>
         </div>
       </div>
 
       {/* Infos pratiques */}
-      <div className="bg-slate-900 rounded-2xl p-4 border border-slate-800">
-        <h3 className="text-white font-bold text-sm mb-3">💡 Conseils budget {destination}</h3>
+      <div className="bg-surface rounded-2xl p-4 border border-line">
+        <h3 className="text-ink font-bold text-sm mb-3">💡 Conseils budget {destination}</h3>
         <div className="space-y-2">
           {[
             { icon: '💳', text: 'WeChat Pay et Alipay sont nécessaires — cartes étrangères peu acceptées hors hôtels.' },
@@ -102,7 +102,7 @@ const Finance = () => {
             { icon: '🔄', text: `Taux de change estimé : 1€ = ${currency.rate} ${currency.symbol} (${currency.name}).` },
             { icon: '🏧', text: 'Retraits ATM possibles dans les aéroports et grandes villes (frais ~3%).' },
           ].map((tip, i) => (
-            <div key={i} className="flex items-start gap-2 text-xs text-slate-400">
+            <div key={i} className="flex items-start gap-2 text-xs text-inksoft">
               <span className="flex-shrink-0 mt-0.5">{tip.icon}</span>
               <span>{tip.text}</span>
             </div>

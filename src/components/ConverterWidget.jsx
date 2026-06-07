@@ -19,32 +19,32 @@ const ConverterWidget = () => {
   return (
     <div className="fixed bottom-6 right-4 z-50">
       {open && (
-        <div className="mb-2 w-64 bg-slate-900 rounded-2xl shadow-2xl border p-4 space-y-3" style={{ borderColor: `${colors.primary}50` }}>
+        <div className="mb-2 w-64 bg-surface rounded-2xl shadow-2xl border p-4 space-y-3" style={{ borderColor: `${colors.primary}50` }}>
           <div className="flex items-center justify-between">
-            <span className="text-white font-bold text-sm">Convertisseur rapide</span>
-            <span className="text-slate-600 text-xs">1€ = {currency.rate}¥</span>
+            <span className="text-ink font-bold text-sm">Convertisseur rapide</span>
+            <span className="text-inkfaint text-xs">1€ = {currency.rate}¥</span>
           </div>
           <div className="flex gap-2">
             <button
               onClick={() => setMode('cny')}
               className="flex-1 py-1.5 rounded-lg text-xs font-bold transition-all"
-              style={mode === 'cny' ? { background: colors.primary, color: 'white' } : { background: '#1e293b', color: '#94a3b8' }}
+              style={mode === 'cny' ? { background: colors.primary, color: 'white' } : { background: 'var(--c-surface2)', color: 'var(--c-inksoft)' }}
             >¥ → €</button>
             <button
               onClick={() => setMode('eur')}
               className="flex-1 py-1.5 rounded-lg text-xs font-bold transition-all"
-              style={mode === 'eur' ? { background: colors.primary, color: 'white' } : { background: '#1e293b', color: '#94a3b8' }}
+              style={mode === 'eur' ? { background: colors.primary, color: 'white' } : { background: 'var(--c-surface2)', color: 'var(--c-inksoft)' }}
             >€ → ¥</button>
           </div>
           <div className="relative">
-            <span className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-500 font-bold">{mode === 'cny' ? '¥' : '€'}</span>
+            <span className="absolute left-3 top-1/2 -translate-y-1/2 text-inkfaint font-bold">{mode === 'cny' ? '¥' : '€'}</span>
             <input
               type="number"
               value={val}
               onChange={e => setVal(e.target.value)}
               placeholder="Montant"
               autoFocus
-              className="w-full bg-slate-800 text-white font-black text-xl rounded-xl pl-8 pr-3 py-2.5 outline-none border border-slate-700 focus:border-slate-600 placeholder-slate-700"
+              className="w-full bg-surface2 text-ink font-black text-xl rounded-xl pl-8 pr-3 py-2.5 outline-none border border-line focus:border-line placeholder-inkfaint"
             />
           </div>
           {isValid && (
@@ -52,7 +52,7 @@ const ConverterWidget = () => {
               <p className="font-black text-2xl" style={{ color: colors.secondary }}>
                 {result} {mode === 'cny' ? '€' : '¥'}
               </p>
-              <p className="text-slate-600 text-[10px] mt-0.5">{val} {mode === 'cny' ? '¥ chinois' : '€ euros'}</p>
+              <p className="text-inkfaint text-[10px] mt-0.5">{val} {mode === 'cny' ? '¥ chinois' : '€ euros'}</p>
             </div>
           )}
         </div>

@@ -30,8 +30,8 @@ const ModeVoyage = () => {
     return (
       <div className="space-y-5">
         <div>
-          <h2 className="text-white font-black text-xl mb-1">Mode Voyage</h2>
-          <p className="text-slate-500 text-sm">Phase de préparation</p>
+          <h2 className="text-ink font-black text-xl mb-1">Mode Voyage</h2>
+          <p className="text-inkfaint text-sm">Phase de préparation</p>
         </div>
 
         {/* Countdown hero */}
@@ -47,23 +47,23 @@ const ModeVoyage = () => {
 
         {/* Horloges */}
         <div className="grid grid-cols-2 gap-3">
-          <div className="bg-slate-900 rounded-2xl p-4 border border-slate-800 text-center">
-            <p className="text-slate-500 text-[10px] uppercase tracking-widest mb-1">🇫🇷 Paris</p>
-            <p className="text-white font-black text-2xl">{timeStr(parisTime)}</p>
+          <div className="bg-surface rounded-2xl p-4 border border-line text-center">
+            <p className="text-inkfaint text-[10px] uppercase tracking-widest mb-1">🇫🇷 Paris</p>
+            <p className="text-ink font-black text-2xl">{timeStr(parisTime)}</p>
           </div>
-          <div className="bg-slate-900 rounded-2xl p-4 border border-slate-800 text-center">
-            <p className="text-slate-500 text-[10px] uppercase tracking-widest mb-1">🇨🇳 Chine</p>
+          <div className="bg-surface rounded-2xl p-4 border border-line text-center">
+            <p className="text-inkfaint text-[10px] uppercase tracking-widest mb-1">🇨🇳 Chine</p>
             <p className="font-black text-2xl" style={{ color: colors.secondary }}>{timeStr(chinaTime)}</p>
           </div>
         </div>
 
         {/* Prochaine étape */}
         {nextReservation && (
-          <div className="bg-slate-900 rounded-2xl p-4 border border-amber-500/20" style={{ background: 'rgba(245,158,11,0.05)' }}>
-            <p className="text-amber-400 text-xs font-bold uppercase tracking-widest mb-1">⏰ Prochaine action</p>
-            <p className="text-white font-bold text-sm">{nextReservation.label}</p>
-            <p className="text-slate-400 text-xs mt-1">{nextReservation.notes}</p>
-            <p className="text-amber-400 text-xs font-bold mt-1">
+          <div className="bg-surface rounded-2xl p-4 border border-amber-300" style={{ background: 'rgba(245,158,11,0.05)' }}>
+            <p className="text-amber-700 text-xs font-bold uppercase tracking-widest mb-1">⏰ Prochaine action</p>
+            <p className="text-ink font-bold text-sm">{nextReservation.label}</p>
+            <p className="text-inksoft text-xs mt-1">{nextReservation.notes}</p>
+            <p className="text-amber-700 text-xs font-bold mt-1">
               Date limite : {new Date(nextReservation.alertDate).toLocaleDateString('fr-FR', { day: 'numeric', month: 'long' })}
             </p>
           </div>
@@ -71,15 +71,15 @@ const ModeVoyage = () => {
 
         {/* Preview circuit */}
         <div>
-          <h3 className="text-slate-400 text-xs font-bold uppercase tracking-widest mb-3">Votre circuit</h3>
+          <h3 className="text-inksoft text-xs font-bold uppercase tracking-widest mb-3">Votre circuit</h3>
           <div className="space-y-2">
             {regions.map((r, i) => (
-              <div key={r.id} className="flex items-center gap-3 bg-slate-900 rounded-xl p-3 border border-slate-800">
-                <div className="w-7 h-7 rounded-lg bg-slate-800 flex items-center justify-center text-xs font-black text-slate-500">{i + 1}</div>
+              <div key={r.id} className="flex items-center gap-3 bg-surface rounded-xl p-3 border border-line">
+                <div className="w-7 h-7 rounded-lg bg-surface2 flex items-center justify-center text-xs font-black text-inkfaint">{i + 1}</div>
                 <span className="text-xl">{r.emoji}</span>
                 <div className="flex-1">
-                  <p className="text-white font-bold text-sm">{r.name}</p>
-                  <p className="text-slate-500 text-xs">{r.dates} · {r.nights} nuits</p>
+                  <p className="text-ink font-bold text-sm">{r.name}</p>
+                  <p className="text-inkfaint text-xs">{r.dates} · {r.nights} nuits</p>
                 </div>
               </div>
             ))}
@@ -98,8 +98,8 @@ const ModeVoyage = () => {
     return (
       <div className="space-y-5">
         <div>
-          <h2 className="text-white font-black text-xl mb-1">Mode Voyage Actif</h2>
-          <p className="text-slate-500 text-sm">{destination} {flag} · Jour {dayNum}/{itinerary.length}</p>
+          <h2 className="text-ink font-black text-xl mb-1">Mode Voyage Actif</h2>
+          <p className="text-inkfaint text-sm">{destination} {flag} · Jour {dayNum}/{itinerary.length}</p>
         </div>
 
         {/* Heure locale */}
@@ -128,32 +128,32 @@ const ModeVoyage = () => {
         </div>
 
         {currentRegion && (
-          <div className="bg-slate-900 rounded-2xl p-4 border border-slate-800">
+          <div className="bg-surface rounded-2xl p-4 border border-line">
             <div className="flex items-center gap-2 mb-2">
               <span className="text-2xl">{currentRegion.emoji}</span>
               <div>
-                <p className="text-white font-black">{currentRegion.name}</p>
-                <p className="text-slate-500 text-xs">{currentRegion.description}</p>
+                <p className="text-ink font-black">{currentRegion.name}</p>
+                <p className="text-inkfaint text-xs">{currentRegion.description}</p>
               </div>
             </div>
-            <p className="text-slate-400 text-xs">🏨 {currentRegion.hotel}</p>
+            <p className="text-inksoft text-xs">🏨 {currentRegion.hotel}</p>
           </div>
         )}
 
         {todayData && (
-          <div className="bg-slate-900 rounded-2xl border border-slate-800 overflow-hidden">
-            <div className="px-4 py-3 border-b border-slate-800" style={{ background: `${colors.primary}15` }}>
-              <p className="text-white font-black">{todayData.title}</p>
-              <p className="text-slate-500 text-xs">{todayData.dayLabel}</p>
+          <div className="bg-surface rounded-2xl border border-line overflow-hidden">
+            <div className="px-4 py-3 border-b border-line" style={{ background: `${colors.primary}15` }}>
+              <p className="text-ink font-black">{todayData.title}</p>
+              <p className="text-inkfaint text-xs">{todayData.dayLabel}</p>
             </div>
             <div className="p-4 space-y-2">
               {todayData.steps.map((step, i) => (
                 <div key={i} className="flex items-start gap-2">
-                  <span className="text-slate-600 text-xs font-mono w-10 flex-shrink-0 mt-0.5">{step.time}</span>
+                  <span className="text-inkfaint text-xs font-mono w-10 flex-shrink-0 mt-0.5">{step.time}</span>
                   <span className="text-lg flex-shrink-0">{step.icon}</span>
                   <div>
-                    <p className="text-white text-sm font-semibold">{step.title}</p>
-                    <p className="text-slate-500 text-xs">{step.desc}</p>
+                    <p className="text-ink text-sm font-semibold">{step.title}</p>
+                    <p className="text-inkfaint text-xs">{step.desc}</p>
                   </div>
                 </div>
               ))}
@@ -168,18 +168,18 @@ const ModeVoyage = () => {
   return (
     <div className="space-y-5">
       <div>
-        <h2 className="text-white font-black text-xl mb-1">Voyage terminé !</h2>
-        <p className="text-slate-500 text-sm">{destination} {flag} · {tripConfig.duration} jours d'aventure</p>
+        <h2 className="text-ink font-black text-xl mb-1">Voyage terminé !</h2>
+        <p className="text-inkfaint text-sm">{destination} {flag} · {tripConfig.duration} jours d'aventure</p>
       </div>
       <div className="rounded-3xl p-6 text-center" style={{ background: `linear-gradient(135deg, ${colors.dark}, ${colors.primary})` }}>
         <p className="text-6xl mb-3">🎉</p>
         <p className="text-white font-black text-2xl mb-1">Bravo {client.name} !</p>
         <p className="text-white/70 text-sm">{tripConfig.duration} jours · {regions.length} villes · Souvenirs à vie</p>
       </div>
-      <div className="bg-slate-900 rounded-2xl p-4 border border-slate-800 text-center">
-        <p className="text-slate-400 text-sm">Réservez votre prochain voyage avec</p>
+      <div className="bg-surface rounded-2xl p-4 border border-line text-center">
+        <p className="text-inksoft text-sm">Réservez votre prochain voyage avec</p>
         <p className="font-black text-lg" style={{ color: colors.secondary }}>{agencyConfig.name}</p>
-        <p className="text-slate-600 text-xs mt-1">{agencyConfig.contact.phone}</p>
+        <p className="text-inkfaint text-xs mt-1">{agencyConfig.contact.phone}</p>
       </div>
     </div>
   );

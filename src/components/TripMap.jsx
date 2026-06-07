@@ -6,10 +6,10 @@ import { agencyConfig } from '../config/agencyConfig';
 import { tripConfig } from '../config/tripConfig';
 
 const colorHex = {
-  red: '#EF4444',
-  amber: '#F59E0B',
-  emerald: '#10B981',
-  blue: '#3B82F6',
+  red: '#9A2B25',
+  amber: '#B5662A',
+  emerald: '#4A7C6F',
+  blue: '#36657F',
 };
 
 const makePin = (region, index) => {
@@ -20,12 +20,12 @@ const makePin = (region, index) => {
       <div style="position:relative;width:44px;height:44px;">
         <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
           width:44px;height:44px;border-radius:50% 50% 50% 0;transform:rotate(-45deg);
-          background:#0f172a;border:3px solid ${color};box-shadow:0 4px 12px rgba(0,0,0,.5);">
+          background:#FCF8F0;border:3px solid ${color};box-shadow:0 6px 16px rgba(44,33,24,.28);">
           <span style="transform:rotate(45deg);font-size:18px;line-height:1;">${region.emoji}</span>
         </div>
         <div style="position:absolute;top:-6px;right:-6px;width:18px;height:18px;border-radius:50%;
           background:${color};color:#fff;font-size:10px;font-weight:900;
-          display:flex;align-items:center;justify-content:center;border:2px solid #0f172a;">${index + 1}</div>
+          display:flex;align-items:center;justify-content:center;border:2px solid #FCF8F0;">${index + 1}</div>
       </div>`,
     iconSize: [44, 44],
     iconAnchor: [22, 44],
@@ -53,17 +53,17 @@ const TripMap = ({ regions, onSelectRegion, height = '60vh' }) => {
       center={center}
       zoom={tripConfig.mapZoom || 5}
       scrollWheelZoom={false}
-      style={{ height, width: '100%', background: '#0f172a' }}
-      className="rounded-2xl overflow-hidden border border-slate-800 z-0"
+      style={{ height, width: '100%', background: '#EADFC9' }}
+      className="rounded-2xl overflow-hidden border border-line z-0"
     >
       <TileLayer
         attribution='&copy; OpenStreetMap &copy; CARTO'
-        url="https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png"
+        url="https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png"
       />
 
       <Polyline
         positions={points}
-        pathOptions={{ color: colors.secondary, weight: 3, dashArray: '8 10', opacity: 0.9 }}
+        pathOptions={{ color: colors.primary, weight: 3, dashArray: '8 10', opacity: 0.9 }}
       />
 
       {regions.filter(r => r.coords).map((region, index) => (
@@ -84,7 +84,7 @@ const TripMap = ({ regions, onSelectRegion, height = '60vh' }) => {
                     padding: '6px 12px', fontSize: 12, fontWeight: 700, cursor: 'pointer', width: '100%',
                   }}
                 >
-                  Voir le roadbook →
+                  Voir l'itinéraire →
                 </button>
               )}
             </div>

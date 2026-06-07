@@ -282,12 +282,12 @@ Réponds en français, de manière pratique, chaleureuse et concise. Utilise du 
     <div className="flex flex-col h-[calc(100vh-280px)] min-h-[400px]">
       {/* En-tête */}
       <div className="mb-4">
-        <h2 className="text-white font-black text-xl mb-1">Coach IA</h2>
-        <p className="text-slate-500 text-sm flex items-center gap-1.5">
+        <h2 className="text-ink font-black text-xl mb-1">Coach IA</h2>
+        <p className="text-inkfaint text-sm flex items-center gap-1.5">
           <Sparkles size={12} />
           Votre assistant voyage · {currentRegion.name} {currentRegion.emoji}
           {!process.env.REACT_APP_GEMINI_KEY && (
-            <span className="ml-1 text-[10px] px-1.5 py-0.5 rounded-full bg-amber-500/10 text-amber-400 border border-amber-500/20">mode démo</span>
+            <span className="ml-1 text-[10px] px-1.5 py-0.5 rounded-full bg-amber-100 text-amber-700 border border-amber-300">mode démo</span>
           )}
         </p>
       </div>
@@ -295,17 +295,17 @@ Réponds en français, de manière pratique, chaleureuse et concise. Utilise du 
       {/* Message de bienvenue + prompts rapides */}
       {messages.length === 0 && (
         <div className="space-y-3 mb-4">
-          <div className="bg-slate-900 rounded-2xl p-4 border border-slate-800 flex items-start gap-3">
+          <div className="bg-surface rounded-2xl p-4 border border-line flex items-start gap-3">
             <div className="p-2 rounded-xl flex-shrink-0" style={{ background: `${colors.primary}20` }}>
               <Bot size={18} style={{ color: colors.secondary }} />
             </div>
             <div>
-              <p className="text-white font-bold text-sm mb-1">Bonjour {client.name} ! 👋</p>
-              <p className="text-slate-400 text-sm">
+              <p className="text-ink font-bold text-sm mb-1">Bonjour {client.name} ! 👋</p>
+              <p className="text-inksoft text-sm">
                 Je suis votre coach voyage pour ce circuit en {destination}.
-                Actuellement : <strong className="text-white">{currentRegion.name}</strong> — {currentRegion.description}.
+                Actuellement : <strong className="text-ink">{currentRegion.name}</strong> — {currentRegion.description}.
               </p>
-              <p className="text-slate-500 text-xs mt-2">Comment puis-je vous aider ?</p>
+              <p className="text-inkfaint text-xs mt-2">Comment puis-je vous aider ?</p>
             </div>
           </div>
 
@@ -314,7 +314,7 @@ Réponds en français, de manière pratique, chaleureuse et concise. Utilise du 
               <button
                 key={p.id}
                 onClick={() => send(p.text)}
-                className="bg-slate-900 rounded-xl p-3 border border-slate-800 hover:border-slate-600 text-left text-xs text-slate-300 font-medium transition-all hover:text-white active:scale-95"
+                className="bg-surface rounded-xl p-3 border border-line hover:border-line text-left text-xs text-inksoft font-medium transition-all hover:text-ink active:scale-95"
               >
                 {p.label}
               </button>
@@ -329,15 +329,15 @@ Réponds en français, de manière pratique, chaleureuse et concise. Utilise du 
           <div key={i} className={`flex items-start gap-2.5 ${msg.role === 'user' ? 'flex-row-reverse' : ''}`}>
             <div
               className="p-2 rounded-xl flex-shrink-0"
-              style={msg.role === 'assistant' ? { background: `${colors.primary}20` } : { background: '#1e293b' }}
+              style={msg.role === 'assistant' ? { background: `${colors.primary}20` } : { background: 'var(--c-surface2)' }}
             >
               {msg.role === 'user'
-                ? <User size={14} className="text-slate-400" />
+                ? <User size={14} className="text-inksoft" />
                 : <Bot size={14} style={{ color: colors.secondary }} />
               }
             </div>
             <div
-              className={`max-w-[85%] rounded-2xl px-4 py-3 text-sm leading-relaxed ${msg.role === 'user' ? 'bg-slate-800 text-white' : 'bg-slate-900 border border-slate-800 text-slate-300'}`}
+              className={`max-w-[85%] rounded-2xl px-4 py-3 text-sm leading-relaxed ${msg.role === 'user' ? 'bg-surface2 text-ink' : 'bg-surface border border-line text-inksoft'}`}
               dangerouslySetInnerHTML={msg.role === 'assistant' ? { __html: renderMarkdown(msg.content) } : undefined}
             >
               {msg.role === 'user' ? msg.content : undefined}
@@ -351,13 +351,13 @@ Réponds en français, de manière pratique, chaleureuse et concise. Utilise du 
             <div className="p-2 rounded-xl flex-shrink-0" style={{ background: `${colors.primary}20` }}>
               <Bot size={14} style={{ color: colors.secondary }} />
             </div>
-            <div className="max-w-[85%] bg-slate-900 border border-slate-800 rounded-2xl px-4 py-3 text-sm text-slate-300 leading-relaxed">
+            <div className="max-w-[85%] bg-surface border border-line rounded-2xl px-4 py-3 text-sm text-inksoft leading-relaxed">
               {streamingText ? (
                 <span dangerouslySetInnerHTML={{ __html: renderMarkdown(streamingText) + '<span class="animate-pulse">▍</span>' }} />
               ) : (
                 <div className="flex gap-1">
                   {[0, 1, 2].map(i => (
-                    <div key={i} className="w-2 h-2 rounded-full bg-slate-600 animate-bounce" style={{ animationDelay: `${i * 0.15}s` }} />
+                    <div key={i} className="w-2 h-2 rounded-full bg-inkfaint animate-bounce" style={{ animationDelay: `${i * 0.15}s` }} />
                   ))}
                 </div>
               )}
@@ -369,14 +369,14 @@ Réponds en français, de manière pratique, chaleureuse et concise. Utilise du 
       </div>
 
       {/* Input */}
-      <div className="flex gap-2 pt-3 border-t border-slate-800 mt-3">
+      <div className="flex gap-2 pt-3 border-t border-line mt-3">
         <input
           type="text"
           value={input}
           onChange={e => setInput(e.target.value)}
           onKeyDown={e => e.key === 'Enter' && !e.shiftKey && send()}
           placeholder="Posez votre question…"
-          className="flex-1 bg-slate-900 text-white rounded-xl px-4 py-3 text-sm outline-none border border-slate-800 focus:border-slate-600 placeholder-slate-600"
+          className="flex-1 bg-surface text-ink rounded-xl px-4 py-3 text-sm outline-none border border-line focus:border-line placeholder-inkfaint"
         />
         <button
           onClick={() => send()}

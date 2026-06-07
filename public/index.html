@@ -5,10 +5,10 @@
     <link rel="icon" href="%PUBLIC_URL%/favicon.svg" type="image/svg+xml" />
     <link rel="alternate icon" href="%PUBLIC_URL%/favicon.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#8B1A2E" />
+    <meta name="theme-color" content="#F4ECDD" />
     <meta name="description" content="Lumière Voyages — Carnet de Voyage Digital" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
     <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
     <title>Lumière Voyages — Carnet Digital</title>
     <script src="https://cdn.tailwindcss.com"></script>
@@ -22,27 +22,31 @@
                 dark: '#5A0F1D',
                 secondary: '#C9A227',
                 light: '#FBF3E2',
-              }
+              },
+              paper: 'var(--c-paper)',
+              surface: 'var(--c-surface)',
+              surface2: 'var(--c-surface2)',
+              ink: 'var(--c-ink)',
+              inksoft: 'var(--c-inksoft)',
+              inkfaint: 'var(--c-inkfaint)',
+              line: 'var(--c-line)',
+              gold: 'var(--c-gold)',
+              jade: 'var(--c-jade)',
+              primary: 'var(--c-primary)',
             },
             fontFamily: {
               sans: ['Inter', 'system-ui', 'sans-serif'],
+              serif: ['Fraunces', 'Georgia', 'serif'],
             }
           }
         }
       }
     </script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-    <style>
-      * { font-family: 'Inter', sans-serif; }
-      ::-webkit-scrollbar { width: 4px; height: 4px; }
-      ::-webkit-scrollbar-track { background: #1e293b; }
-      ::-webkit-scrollbar-thumb { background: #8B1A2E; border-radius: 2px; }
-      .scrollbar-hide::-webkit-scrollbar { display: none; }
-      .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
-    </style>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700;9..144,900&family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
   </head>
-  <body class="bg-slate-950">
+  <body class="bg-paper">
     <noscript>Vous devez activer JavaScript pour utiliser cette application.</noscript>
     <div id="root"></div>
   </body>

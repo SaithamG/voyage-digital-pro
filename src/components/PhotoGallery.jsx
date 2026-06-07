@@ -26,15 +26,15 @@ const PhotoGallery = ({ images = [], emoji = '📷', color = '#8B1A2E', name = '
   return (
     <div>
       <div className="flex items-center gap-1.5 mb-2">
-        <Camera size={13} className="text-slate-500" />
-        <span className="text-slate-500 text-xs font-semibold uppercase tracking-widest">Galerie — {name}</span>
+        <Camera size={13} className="text-inkfaint" />
+        <span className="text-inkfaint text-xs font-semibold uppercase tracking-widest">Galerie — {name}</span>
       </div>
       <div className="grid grid-cols-3 gap-2">
         {images.map((src, i) => (
           <button
             key={i}
             onClick={() => setOpen(i)}
-            className="group relative rounded-xl overflow-hidden focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-slate-950"
+            className="group relative rounded-xl overflow-hidden focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-paper"
             style={{ '--tw-ring-color': color }}
             aria-label={`Photo ${i + 1} de ${name}`}
           >

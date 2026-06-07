@@ -24,24 +24,24 @@ const Checklist = () => {
   return (
     <div className="space-y-5">
       <div>
-        <h2 className="text-white font-black text-xl mb-1">Checklist pré-voyage</h2>
-        <p className="text-slate-500 text-sm">{done}/{total} éléments complétés</p>
+        <h2 className="text-ink font-black text-xl mb-1">Checklist pré-voyage</h2>
+        <p className="text-inkfaint text-sm">{done}/{total} éléments complétés</p>
       </div>
 
       {/* Progression globale */}
-      <div className="bg-slate-900 rounded-2xl p-4 border border-slate-800">
+      <div className="bg-surface rounded-2xl p-4 border border-line">
         <div className="flex items-center justify-between mb-2">
-          <span className="text-slate-400 text-sm">Préparation</span>
+          <span className="text-inksoft text-sm">Préparation</span>
           <span className="font-black text-lg" style={{ color: pct === 100 ? '#10B981' : colors.secondary }}>{pct}%</span>
         </div>
-        <div className="h-3 bg-slate-800 rounded-full overflow-hidden">
+        <div className="h-3 bg-surface2 rounded-full overflow-hidden">
           <div
             className="h-full rounded-full transition-all duration-500"
             style={{ width: `${pct}%`, background: pct === 100 ? '#10B981' : colors.primary }}
           />
         </div>
         {pct === 100 && (
-          <p className="text-emerald-400 text-xs font-bold mt-2 text-center">🎉 Tout est prêt — bon voyage !</p>
+          <p className="text-emerald-600 text-xs font-bold mt-2 text-center">🎉 Tout est prêt — bon voyage !</p>
         )}
       </div>
 
@@ -49,11 +49,11 @@ const Checklist = () => {
       {checklist.map(category => {
         const catDone = category.items.filter(item => checked.includes(item.id)).length;
         return (
-          <div key={category.category} className="bg-slate-900 rounded-2xl border border-slate-800 overflow-hidden">
-            <div className="px-4 py-3 border-b border-slate-800 flex items-center justify-between" style={{ background: `${colors.primary}10` }}>
+          <div key={category.category} className="bg-surface rounded-2xl border border-line overflow-hidden">
+            <div className="px-4 py-3 border-b border-line flex items-center justify-between" style={{ background: `${colors.primary}10` }}>
               <div className="flex items-center gap-2">
                 <span className="text-xl">{category.icon}</span>
-                <span className="text-white font-bold text-sm">{category.category}</span>
+                <span className="text-ink font-bold text-sm">{category.category}</span>
               </div>
               <span className="text-xs font-bold" style={{ color: catDone === category.items.length ? '#10B981' : colors.secondary }}>
                 {catDone}/{category.items.length}
@@ -66,13 +66,13 @@ const Checklist = () => {
                   <button
                     key={item.id}
                     onClick={() => toggle(item.id)}
-                    className={`w-full flex items-center gap-3 p-3 rounded-xl text-left transition-all ${isDone ? 'opacity-50' : 'hover:bg-slate-800'}`}
+                    className={`w-full flex items-center gap-3 p-3 rounded-xl text-left transition-all ${isDone ? 'opacity-50' : 'hover:bg-surface2'}`}
                   >
                     {isDone
                       ? <CheckCircle size={18} className="text-emerald-500 flex-shrink-0" />
-                      : <Circle size={18} className="text-slate-600 flex-shrink-0" />
+                      : <Circle size={18} className="text-inkfaint flex-shrink-0" />
                     }
-                    <span className={`text-sm flex-1 ${isDone ? 'line-through text-slate-500' : 'text-slate-300'}`}>
+                    <span className={`text-sm flex-1 ${isDone ? 'line-through text-inkfaint' : 'text-inksoft'}`}>
                       {item.label}
                     </span>
                     {item.critical && !isDone && (

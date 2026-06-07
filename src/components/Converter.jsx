@@ -24,22 +24,22 @@ const Converter = () => {
   return (
     <div className="space-y-5">
       <div>
-        <h2 className="text-white font-black text-xl mb-1">Convertisseur</h2>
-        <p className="text-slate-500 text-sm">Euro ↔ Yuan chinois (CNY) · Taux : 1€ = {currency.rate} ¥</p>
+        <h2 className="text-ink font-black text-xl mb-1">Convertisseur</h2>
+        <p className="text-inkfaint text-sm">Euro ↔ Yuan chinois (CNY) · Taux : 1€ = {currency.rate} ¥</p>
       </div>
 
-      <div className="bg-slate-900 rounded-2xl p-5 border border-slate-800 space-y-4">
+      <div className="bg-surface rounded-2xl p-5 border border-line space-y-4">
         {/* EUR */}
         <div>
-          <label className="text-slate-500 text-xs font-semibold uppercase tracking-widest mb-2 block">Euros (€)</label>
+          <label className="text-inkfaint text-xs font-semibold uppercase tracking-widest mb-2 block">Euros (€)</label>
           <div className="relative">
-            <span className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 font-bold text-lg">€</span>
+            <span className="absolute left-4 top-1/2 -translate-y-1/2 text-inksoft font-bold text-lg">€</span>
             <input
               type="number"
               value={eur}
               onChange={e => handleEur(e.target.value)}
               placeholder="0.00"
-              className="w-full bg-slate-800 text-white font-black text-2xl rounded-xl pl-10 pr-4 py-4 outline-none border border-slate-700 focus:border-slate-500 placeholder-slate-700"
+              className="w-full bg-surface2 text-ink font-black text-2xl rounded-xl pl-10 pr-4 py-4 outline-none border border-line focus:border-gold placeholder-inkfaint"
             />
           </div>
         </div>
@@ -53,15 +53,15 @@ const Converter = () => {
 
         {/* CNY */}
         <div>
-          <label className="text-slate-500 text-xs font-semibold uppercase tracking-widest mb-2 block">Yuan chinois (¥)</label>
+          <label className="text-inkfaint text-xs font-semibold uppercase tracking-widest mb-2 block">Yuan chinois (¥)</label>
           <div className="relative">
-            <span className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 font-bold text-lg">¥</span>
+            <span className="absolute left-4 top-1/2 -translate-y-1/2 text-inksoft font-bold text-lg">¥</span>
             <input
               type="number"
               value={cny}
               onChange={e => handleCny(e.target.value)}
               placeholder="0"
-              className="w-full bg-slate-800 text-white font-black text-2xl rounded-xl pl-10 pr-4 py-4 outline-none border border-slate-700 focus:border-slate-500 placeholder-slate-700"
+              className="w-full bg-surface2 text-ink font-black text-2xl rounded-xl pl-10 pr-4 py-4 outline-none border border-line focus:border-gold placeholder-inkfaint"
             />
           </div>
         </div>
@@ -69,24 +69,24 @@ const Converter = () => {
 
       {/* Conversions rapides */}
       <div>
-        <h3 className="text-slate-500 text-xs font-bold uppercase tracking-widest mb-3">Conversions rapides ¥ → €</h3>
+        <h3 className="text-inkfaint text-xs font-bold uppercase tracking-widest mb-3">Conversions rapides ¥ → €</h3>
         <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
           {currency.presets.map(val => (
             <button
               key={val}
               onClick={() => handleCny(String(val))}
-              className="bg-slate-900 rounded-xl p-3 border border-slate-800 hover:border-slate-700 transition-all text-center group"
+              className="bg-surface rounded-xl p-3 border border-line hover:border-line transition-all text-center group"
             >
-              <p className="text-white font-black text-lg group-hover:scale-105 transition-transform">{val} ¥</p>
-              <p className="text-slate-500 text-xs">{(val / currency.rate).toFixed(2)} €</p>
+              <p className="text-ink font-black text-lg group-hover:scale-105 transition-transform">{val} ¥</p>
+              <p className="text-inkfaint text-xs">{(val / currency.rate).toFixed(2)} €</p>
             </button>
           ))}
         </div>
       </div>
 
       {/* Références utiles */}
-      <div className="bg-slate-900 rounded-2xl p-4 border border-slate-800">
-        <h3 className="text-white font-bold text-sm mb-3">📌 Prix de référence en Chine</h3>
+      <div className="bg-surface rounded-2xl p-4 border border-line">
+        <h3 className="text-ink font-bold text-sm mb-3">📌 Prix de référence en Chine</h3>
         <div className="space-y-2">
           {[
             { item: 'Repas street food', cny: '15-30', eur: `${(22.5 / currency.rate).toFixed(1)}` },
@@ -97,10 +97,10 @@ const Converter = () => {
             { item: 'Entrée Cité Interdite', cny: '60', eur: `${(60 / currency.rate).toFixed(1)}` },
           ].map((ref, i) => (
             <div key={i} className="flex items-center justify-between text-sm">
-              <span className="text-slate-400">{ref.item}</span>
+              <span className="text-inksoft">{ref.item}</span>
               <div className="text-right">
-                <span className="text-white font-semibold">{ref.cny} ¥</span>
-                <span className="text-slate-600 text-xs ml-1">(~{ref.eur} €)</span>
+                <span className="text-ink font-semibold">{ref.cny} ¥</span>
+                <span className="text-inkfaint text-xs ml-1">(~{ref.eur} €)</span>
               </div>
             </div>
           ))}

@@ -3,21 +3,13 @@ import { Globe } from 'lucide-react';
 
 import Landing from './components/Landing';
 import Header from './components/Header';
-import Overview from './components/Overview';
-import Finance from './components/Finance';
-import SuiviDepenses from './components/SuiviDepenses';
+import VoyageGroup from './components/VoyageGroup';
 import Itinerary from './components/Itinerary';
-import Carte from './components/Carte';
-import Transport from './components/Transport';
-import Converter from './components/Converter';
-import ConverterWidget from './components/ConverterWidget';
-import Checklist from './components/Checklist';
-import Lexique from './components/Lexique';
-import Runbook from './components/Runbook';
-import Urgences from './components/Urgences';
-import ModeVoyage from './components/ModeVoyage';
-import ChronoHotPot from './components/ChronoHotPot';
+import BudgetGroup from './components/BudgetGroup';
+import PratiqueGroup from './components/PratiqueGroup';
 import CoachIA from './components/CoachIA';
+import ConverterWidget from './components/ConverterWidget';
+import ChronoHotPot from './components/ChronoHotPot';
 
 import { agencyConfig } from './config/agencyConfig';
 import { tripConfig } from './config/tripConfig';
@@ -33,24 +25,27 @@ const calculerTempsRestant = () => {
   };
 };
 
-const TAB_COMPONENTS = {
-  voyage: ModeVoyage,
-  overview: Overview,
-  finance: Finance,
-  expenses: SuiviDepenses,
-  transport: Transport,
-  conversion: Converter,
-  checklist: Checklist,
-  lexique: Lexique,
-  runbook: Runbook,
-  urgences: Urgences,
+const CSS_VARS = {
+  paper: '--c-paper', surface: '--c-surface', surface2: '--c-surface2',
+  ink: '--c-ink', inksoft: '--c-inksoft', inkfaint: '--c-inkfaint',
+  line: '--c-line', primary: '--c-primary', gold: '--c-gold', jade: '--c-jade',
 };
 
 const App = () => {
   const [showLanding, setShowLanding] = useState(true);
-  const [activeTab, setActiveTab] = useState('overview');
+  const [activeTab, setActiveTab] = useState('voyage');
   const [activeRegion, setActiveRegion] = useState('beijing');
   const [timeLeft, setTimeLeft] = useState(calculerTempsRestant());
+
+  // Thème piloté par la destination (tripConfig.theme)
+  useEffect(() => {
+    const theme = tripConfig.theme;
+    if (!theme) return;
+    const root = document.documentElement.style;
+    Object.entries(CSS_VARS).forEach(([key, varName]) => {
+      if (theme[key]) root.setProperty(varName, theme[key]);
+    });
+  }, []);
 
   useEffect(() => {
     const timer = setInterval(() => setTimeLeft(calculerTempsRestant()), 1000);
@@ -63,17 +58,14 @@ const App = () => {
   };
 
   const renderTab = () => {
-    if (activeTab === 'roadbook') {
-      return <Itinerary activeRegion={activeRegion} setActiveRegion={setActiveRegion} />;
+    switch (activeTab) {
+      case 'voyage': return <VoyageGroup goToRegion={goToRegion} />;
+      case 'roadbook': return <Itinerary activeRegion={activeRegion} setActiveRegion={setActiveRegion} />;
+      case 'budget': return <BudgetGroup />;
+      case 'pratique': return <PratiqueGroup />;
+      case 'ai': return <CoachIA activeRegion={activeRegion} />;
+      default: return null;
     }
-    if (activeTab === 'map') {
-      return <Carte goToRegion={goToRegion} />;
-    }
-    if (activeTab === 'ai') {
-      return <CoachIA activeRegion={activeRegion} />;
-    }
-    const TabComponent = TAB_COMPONENTS[activeTab];
-    return TabComponent ? <TabComponent /> : null;
   };
 
   const { colors } = agencyConfig;
@@ -83,7 +75,7 @@ const App = () => {
   }
 
   return (
-    <div className="min-h-screen bg-slate-950 text-slate-200 pb-32 selection:bg-blue-500/30" style={{ fontFamily: 'Inter, system-ui, sans-serif' }}>
+    <div className="min-h-screen bg-paper text-ink pb-32" style={{ fontFamily: 'Inter, system-ui, sans-serif' }}>
       <Header activeTab={activeTab} setActiveTab={setActiveTab} timeLeft={timeLeft} />
 
       <main className="max-w-5xl mx-auto p-4 md:p-6 mt-4">
@@ -96,24 +88,21 @@ const App = () => {
       {/* Footer agence */}
       <div className="fixed bottom-0 left-0 right-0 z-30">
         <div className="max-w-5xl mx-auto px-4 pb-3">
-          <div
-            className="bg-slate-900/95 backdrop-blur-sm text-white p-3 rounded-2xl shadow-2xl flex justify-between items-center border"
-            style={{ borderColor: `${colors.primary}40` }}
-          >
+          <div className="bg-surface p-3 rounded-2xl border border-line flex justify-between items-center shadow-[0_8px_30px_rgba(44,33,24,0.12)]">
             <div className="flex items-center gap-2.5">
               <div className="p-1.5 rounded-lg" style={{ background: colors.primary }}>
-                <Globe size={14} />
+                <Globe size={14} className="text-white" />
               </div>
               <div>
-                <p className="text-[9px] font-black uppercase tracking-widest leading-none" style={{ color: colors.secondary }}>
+                <p className="text-[9px] font-black uppercase tracking-widest leading-none" style={{ color: colors.primary }}>
                   {agencyConfig.name}
                 </p>
-                <p className="text-[10px] text-slate-400 leading-none mt-0.5">{agencyConfig.tagline}</p>
+                <p className="text-[10px] text-inkfaint leading-none mt-0.5">{agencyConfig.tagline}</p>
               </div>
             </div>
             <div className="text-right">
-              <p className="text-[9px] text-slate-500 leading-none">Carnet de</p>
-              <p className="text-[10px] font-black text-white leading-none mt-0.5">{tripConfig.client.name}</p>
+              <p className="text-[9px] text-inkfaint leading-none">Carnet de</p>
+              <p className="text-[10px] font-black text-ink leading-none mt-0.5">{tripConfig.client.name}</p>
             </div>
           </div>
         </div>

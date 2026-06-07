@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useMemo } from 'react';
 import { MapContainer, TileLayer, Marker, Popup, Polyline, useMap } from 'react-leaflet';
 import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
@@ -45,7 +45,10 @@ const FitBounds = ({ points }) => {
 
 const TripMap = ({ regions, onSelectRegion, height = '60vh' }) => {
   const { colors } = agencyConfig;
-  const points = regions.filter(r => r.coords).map(r => r.coords);
+  // Mémoïsé : référence stable entre les re-renders (le compte à rebours en
+  // déclenche un par seconde) — sinon le cadrage auto se relancerait sans cesse
+  // et annulerait le zoom/déplacement de l'utilisateur.
+  const points = useMemo(() => regions.filter(r => r.coords).map(r => r.coords), [regions]);
   const center = points[0] || [35, 110];
 
   return (
